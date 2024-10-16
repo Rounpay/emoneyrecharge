@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "814826045252",
+    "project_id": "emoneyrechargeonline",
+    "storage_bucket": "emoneyrechargeonline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814826045252:android:3ea618f29041e6a61ae111",
+        "android_client_info": {
+          "package_name": "com.fintech.emoneyrechargeonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814826045252-5j3ijd5r21pu04uv39luttlj049blef5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzBTZXJe_r4rtZh2Ar4ovV-_ZhGYgypTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814826045252-5j3ijd5r21pu04uv39luttlj049blef5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814826045252:android:fc6d3083bb9555f51ae111",
+        "android_client_info": {
+          "package_name": "com.fintech.emoneyrechargeonlinenew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814826045252-5j3ijd5r21pu04uv39luttlj049blef5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzBTZXJe_r4rtZh2Ar4ovV-_ZhGYgypTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814826045252-5j3ijd5r21pu04uv39luttlj049blef5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
