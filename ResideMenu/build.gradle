@@ -24,6 +24,7 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    namespace 'com.special.ResideMenu'
 }
 
 dependencies {

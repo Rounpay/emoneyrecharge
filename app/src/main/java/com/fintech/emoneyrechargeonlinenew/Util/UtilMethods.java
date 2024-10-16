@@ -113,8 +113,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.fintech.emoneyrechargeonlinenew.Activities.AEPSReportRequest;
@@ -574,25 +573,31 @@ public enum UtilMethods {
             final String fcmId = getFCMRegKey(context);
 
             if (fcmId == null || fcmId.isEmpty()) {
-                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-                    @Override
-                    public void onSuccess(InstanceIdResult instanceIdResult) {
-                        String newToken = instanceIdResult.getToken();
-
-                        if (newToken != null && !newToken.isEmpty()) {
-                            setFCMRegKey(context, newToken);
-                            updateFcm(context, newToken);
-                        } else {
-                            updateFcm(context, fcmId);
-                        }
-                    }
-                }).addOnFailureListener(    new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        updateFcm(context, fcmId);
-                    }
-                });
+                // Use FirebaseMessaging to get the new token
+                FirebaseMessaging.getInstance().getToken()
+                        .addOnSuccessListener(new OnSuccessListener<String>() {
+                            @Override
+                            public void onSuccess(String newToken) {
+                                if (newToken != null && !newToken.isEmpty()) {
+                                    // Save the new token
+                                    setFCMRegKey(context, newToken);
+                                    // Call the update method with the new token
+                                    updateFcm(context, newToken);
+                                } else {
+                                    // If the new token is empty, call update with the current FCM ID (fcmId)
+                                    updateFcm(context, fcmId);
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // If token retrieval fails, continue with the old token
+                                updateFcm(context, fcmId);
+                            }
+                        });
             } else {
+                // If fcmId is already available, call the update method
                 updateFcm(context, fcmId);
             }
         } catch (Exception e) {
